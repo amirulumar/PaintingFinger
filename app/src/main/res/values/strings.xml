@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PaintingFinger</string>
+    <string name="size">Size</string>
+    <item name="myFingerPainterViewId" type="id" />
+    <string name="title_activity_brush_size_view">Settings</string>
+    <string name="shape">Shape</string>
+    <string name="finger_painter">Finger Painter</string>
+    <string name="confirm">Confirm</string>
+    <string name="colour_hexa">colour_hexa</string>
+    <string name="colour">colour</string>
+    <string name="set_colour">Set Colour</string>
+    <string name="set_shape">Set Shape</string>
+    ``
+    <string-array name="colour_dropdown">
+        <item>Red</item>
+        <item>Orange</item>
+        <item>Yellow</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Indigo</item>
+        <item>Violet</item>
+    </string-array>
+</resources>
