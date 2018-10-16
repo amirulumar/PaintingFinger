@@ -6,11 +6,21 @@
     <string name="title_activity_brush_size_view">Settings</string>
     <string name="shape">Shape</string>
     <string name="finger_painter">Finger Painter</string>
-    <string name="confirm">Confirm</string>
     <string name="colour_hexa">colour_hexa</string>
     <string name="colour">colour</string>
     <string name="set_colour">Set Colour</string>
     <string name="set_shape">Set Shape</string>
+    <string name="yellow">YELLOW</string>
+    <string name="green">GREEN</string>
+    <string name="violet">VIOLET</string>
+    <string name="black">BLACK</string>
+    <string name="red">RED</string>
+    <string name="orange">ORANGE</string>
+    <string name="blue">BLUE</string>
+    <string name="indigo">INDIGO</string>
+    <string name="confirm">Confirm</string>
+    <string name="round">ROUND</string>
+    <string name="square">SQUARE</string>
     ``
     <string-array name="colour_dropdown">
         <item>Red</item>

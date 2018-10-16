@@ -15,22 +15,72 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/colour_hex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ems="10"
-        android:inputType="textCapCharacters"
-        android:textAlignment="center" />
-
-    <Button
-        android:id="@+id/colour_confirm"
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorAccent"
-        android:text="@string/confirm"
-        android:textColor="@android:color/white" />
+        android:stretchColumns="*"
+        android:shrinkColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF0000"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFA500" />
+
+            <Button
+                android:id="@+id/yellow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFFF00" />
+
+            <Button
+                android:id="@+id/green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FF00" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#0000FF" />
+
+            <Button
+                android:id="@+id/indigo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#4B0082" />
+
+            <Button
+                android:id="@+id/violet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#EE82EE" />
+
+            <Button
+                android:id="@+id/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#000000" />
+
+        </TableRow>
+
+    </TableLayout>
 
 </LinearLayout>
