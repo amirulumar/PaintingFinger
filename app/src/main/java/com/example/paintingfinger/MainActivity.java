@@ -12,7 +12,6 @@ import android.graphics.Paint;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    int brush_colour = 0xFF000000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
         myFrameLayout.addView(myFingerPainterView);
 
+        setColour(myFingerPainterView);
+        setShape(myFingerPainterView);
+    }
+
+    public void setColour(final FingerPainterView paint) {
         // set brush colour
         Button showColours = findViewById(R.id.colour);
         showColours.setOnClickListener(new View.OnClickListener() {
@@ -54,80 +58,19 @@ public class MainActivity extends AppCompatActivity {
                 final AlertDialog dialog = builder.create();
                 dialog.show();
 
-                colour_red.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        myFingerPainterView.setColour(0xFFFF0000);
-                        Toast.makeText(getApplicationContext(), "Red selected", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }
-                });
-
-                colour_orange.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        myFingerPainterView.setColour(0xFFFFA500);
-                        Toast.makeText(getApplicationContext(), "Orange selected", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }
-                });
-
-                colour_yellow.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        myFingerPainterView.setColour(0xFFFFFF00);
-                        Toast.makeText(getApplicationContext(), "Yellow selected", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }
-                });
-
-                colour_green.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        myFingerPainterView.setColour(0xFF00FF00);
-                        Toast.makeText(getApplicationContext(), "Green selected", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }
-                });
-
-                colour_blue.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        myFingerPainterView.setColour(0xFF0000FF);
-                        Toast.makeText(getApplicationContext(), "Blue selected", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }
-                });
-
-                colour_indigo.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        myFingerPainterView.setColour(0xFF4B0082);
-                        Toast.makeText(getApplicationContext(), "Indigo selected", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }
-                });
-
-                colour_violet.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        myFingerPainterView.setColour(0xFFEE82EE);
-                        Toast.makeText(getApplicationContext(), "Violet selected", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }
-                });
-
-                colour_black.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        myFingerPainterView.setColour(0xFF000000);
-                        Toast.makeText(getApplicationContext(), "Black selected", Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }
-                });
+                setColourListener(colour_red, paint, dialog);
+                setColourListener(colour_orange, paint, dialog);
+                setColourListener(colour_yellow, paint, dialog);
+                setColourListener(colour_green, paint, dialog);
+                setColourListener(colour_blue, paint, dialog);
+                setColourListener(colour_indigo, paint, dialog);
+                setColourListener(colour_violet, paint, dialog);
+                setColourListener(colour_black, paint, dialog);
             }
         });
+    }
 
+    public void setShape(final FingerPainterView paint) {
         // set brush shape and width
         Button showShape = findViewById(R.id.shape);
         showShape.setOnClickListener(new View.OnClickListener() {
@@ -142,34 +85,89 @@ public class MainActivity extends AppCompatActivity {
                 Button shape_square = popup.findViewById(R.id.square);
                 final EditText shape_width = popup.findViewById(R.id.shape_width);
                 final Button confirm = popup.findViewById(R.id.shape_confirm);
-                shape_width.setText(Integer.toString(myFingerPainterView.getBrushWidth()));
+                shape_width.setText(Integer.toString(paint.getBrushWidth()));
 
                 // create and show the alert dialog
                 builder.setView(popup);
                 final AlertDialog dialog = builder.create();
                 dialog.show();
 
-                shape_round.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        myFingerPainterView.setBrush(Paint.Cap.ROUND);
-                        Toast.makeText(getApplicationContext(), "Round brush selected", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                shape_square.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        myFingerPainterView.setBrush(Paint.Cap.SQUARE);
-                        Toast.makeText(getApplicationContext(), "Square brush selected", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                setShapeListener(shape_round, paint, dialog);
+                setShapeListener(shape_square, paint, dialog);
+                
                 confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        myFingerPainterView.setBrushWidth(Integer.parseInt(shape_width.getText().toString()));
+                        paint.setBrushWidth(Integer.parseInt(shape_width.getText().toString()));
                         dialog.dismiss();
                     }
                 });
+            }
+        });
+    }
+
+    public void setColourListener (final View colour, final FingerPainterView paint, final AlertDialog dialog) {
+        colour.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String value = null;
+                switch (colour.getId()) {
+                    case R.id.red:
+                        paint.setColour(0xFFFF0000);
+                        value = "Red selected";
+                        break;
+                    case R.id.orange:
+                        paint.setColour(0xFFFFA500);
+                        value = "Orange selected";
+                        break;
+                    case R.id.yellow:
+                        paint.setColour(0xFFFFFF00);
+                        value = "Yellow selected";
+                        break;
+                    case R.id.green:
+                        paint.setColour(0xFF00FF00);
+                        value = "Green selected";
+                        break;
+                    case R.id.blue:
+                        paint.setColour(0xFF0000FF);
+                        value = "Blue selected";
+                        break;
+                    case R.id.indigo:
+                        paint.setColour(0xFF4B0082);
+                        value = "Indigo selected";
+                        break;
+                    case R.id.violet:
+                        paint.setColour(0xFFEE82EE);
+                        value = "Violet selected";
+                        break;
+                    case R.id.black:
+                        paint.setColour(0xFF000000);
+                        value = "Black selected";
+                        break;
+                }
+                Toast.makeText(getApplicationContext(), value, Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        }));
+    }
+
+    public void setShapeListener(final View brush, final FingerPainterView paint, final AlertDialog dialog) {
+        brush.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String value = null;
+                switch (v.getId()) {
+                    case R.id.round:
+                        paint.setBrush(Paint.Cap.ROUND);
+                        value = "Round selected";
+                        break;
+                    case R.id.square:
+                        paint.setBrush(Paint.Cap.SQUARE);
+                        value = "Square selected";
+                        break;
+                }
+                Toast.makeText(getApplicationContext(), value, Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
             }
         });
     }
