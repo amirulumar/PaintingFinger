@@ -33,6 +33,31 @@ public class MainActivity extends AppCompatActivity {
         setShape(myFingerPainterView);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
     public void setColour(final FingerPainterView paint) {
         // set brush colour
         Button showColours = findViewById(R.id.colour);
@@ -42,6 +67,37 @@ public class MainActivity extends AppCompatActivity {
                 // setup the alert builder
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 View popup = getLayoutInflater().inflate(R.layout.dialog_colour, null);
+
+                // get brush colour and add prompt
+                int colour = paint.getColour();
+                String prompt = null;
+                switch (colour) {
+                    case 0xFFFF0000:
+                        prompt = "Red";
+                        break;
+                    case 0xFFFFA500:
+                        prompt = "Orange";
+                        break;
+                    case 0xFFFFFF00:
+                        prompt = "Yellow";
+                        break;
+                    case 0xFF00FF00:
+                        prompt = "Green";
+                        break;
+                    case 0xFF0000FF:
+                        prompt = "Blue";
+                        break;
+                    case 0xFF4B0082:
+                        prompt = "Indigo";
+                        break;
+                    case 0xFFEE82EE:
+                        prompt = "Violet";
+                        break;
+                    case 0xFF000000:
+                        prompt = "Black";
+                        break;
+                }
+                Toast.makeText(getApplicationContext(), "Current colour: " + prompt, Toast.LENGTH_SHORT).show();
 
                 // input values (brush colour)
                 Button colour_red = popup.findViewById(R.id.red);
@@ -79,6 +135,19 @@ public class MainActivity extends AppCompatActivity {
                 // setup the alert builder
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 View popup = getLayoutInflater().inflate(R.layout.dialog_shape, null);
+
+                // get brush shape and add prompt
+                Paint.Cap shape = paint.getBrush();
+                String prompt = null;
+                switch (shape) {
+                    case ROUND:
+                        prompt = "Round";
+                        break;
+                    case SQUARE:
+                        prompt = "Square";
+                        break;
+                }
+                Toast.makeText(getApplicationContext(), "Current shape: " + prompt, Toast.LENGTH_SHORT).show();
 
                 // input values (brush shape and width)
                 Button shape_round = popup.findViewById(R.id.round);
