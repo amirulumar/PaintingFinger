@@ -21,22 +21,19 @@
         android:stretchColumns="*"
         android:shrinkColumns="*" >
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
             <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:id="@+id/round"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/round" />
 
             <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:id="@+id/square"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/square" />
-        </TableRow>
 
     </TableLayout>
 
@@ -45,9 +42,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:ems="10"
+        android:ems="3"
         android:inputType="number"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:hint="@string/_0_150"/>
 
     <Button
         android:id="@+id/shape_confirm"

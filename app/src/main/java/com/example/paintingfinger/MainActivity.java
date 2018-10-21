@@ -34,29 +34,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-    }
+    protected void onStart() { super.onStart(); }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-    }
+    protected void onResume() { super.onResume(); }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-    }
+    protected void onPause() { super.onPause(); }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-    }
+    protected void onStop() { super.onStop(); }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
+    protected void onDestroy() { super.onDestroy(); }
 
     public void setColour(final FingerPainterView paint) {
         // set brush colour
@@ -97,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         prompt = "Black";
                         break;
                 }
-                Toast.makeText(getApplicationContext(), "Current colour: " + prompt, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Current colour: " + prompt, Toast.LENGTH_LONG).show();
 
                 // input values (brush colour)
                 Button colour_red = popup.findViewById(R.id.red);
@@ -114,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 final AlertDialog dialog = builder.create();
                 dialog.show();
 
+                // onClick functions for each colour
                 setColourListener(colour_red, paint, dialog);
                 setColourListener(colour_orange, paint, dialog);
                 setColourListener(colour_yellow, paint, dialog);
@@ -147,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                         prompt = "Square";
                         break;
                 }
-                Toast.makeText(getApplicationContext(), "Current shape: " + prompt, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Current shape: " + prompt, Toast.LENGTH_LONG).show();
 
                 // input values (brush shape and width)
                 Button shape_round = popup.findViewById(R.id.round);
@@ -161,14 +152,23 @@ public class MainActivity extends AppCompatActivity {
                 final AlertDialog dialog = builder.create();
                 dialog.show();
 
+                // onClick functions for each shape
                 setShapeListener(shape_round, paint, dialog);
                 setShapeListener(shape_square, paint, dialog);
-                
+
+                // confirm size of brush
                 confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        paint.setBrushWidth(Integer.parseInt(shape_width.getText().toString()));
-                        dialog.dismiss();
+                        int value = Integer.parseInt(shape_width.getText().toString());
+                        if (value == 0) {
+                            Toast.makeText(getApplicationContext(), "Brush width cannot equal 0", Toast.LENGTH_SHORT).show();
+                        } else if (value > 150) {
+                            Toast.makeText(getApplicationContext(), "Brush width cannot exceed 150", Toast.LENGTH_SHORT).show();
+                        } else {
+                            paint.setBrushWidth(Integer.parseInt(shape_width.getText().toString()));
+                            dialog.dismiss();
+                        }
                     }
                 });
             }
@@ -183,38 +183,38 @@ public class MainActivity extends AppCompatActivity {
                 switch (colour.getId()) {
                     case R.id.red:
                         paint.setColour(0xFFFF0000);
-                        value = "Red selected";
+                        value = "Red";
                         break;
                     case R.id.orange:
                         paint.setColour(0xFFFFA500);
-                        value = "Orange selected";
+                        value = "Orange";
                         break;
                     case R.id.yellow:
                         paint.setColour(0xFFFFFF00);
-                        value = "Yellow selected";
+                        value = "Yellow";
                         break;
                     case R.id.green:
                         paint.setColour(0xFF00FF00);
-                        value = "Green selected";
+                        value = "Green";
                         break;
                     case R.id.blue:
                         paint.setColour(0xFF0000FF);
-                        value = "Blue selected";
+                        value = "Blue";
                         break;
                     case R.id.indigo:
                         paint.setColour(0xFF4B0082);
-                        value = "Indigo selected";
+                        value = "Indigo";
                         break;
                     case R.id.violet:
                         paint.setColour(0xFFEE82EE);
-                        value = "Violet selected";
+                        value = "Violet";
                         break;
                     case R.id.black:
                         paint.setColour(0xFF000000);
-                        value = "Black selected";
+                        value = "Black";
                         break;
                 }
-                Toast.makeText(getApplicationContext(), value, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), value + " selected", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         }));
@@ -228,14 +228,14 @@ public class MainActivity extends AppCompatActivity {
                 switch (v.getId()) {
                     case R.id.round:
                         paint.setBrush(Paint.Cap.ROUND);
-                        value = "Round selected";
+                        value = "Round";
                         break;
                     case R.id.square:
                         paint.setBrush(Paint.Cap.SQUARE);
-                        value = "Square selected";
+                        value = "Square";
                         break;
                 }
-                Toast.makeText(getApplicationContext(), value, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), value + " selected", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });
