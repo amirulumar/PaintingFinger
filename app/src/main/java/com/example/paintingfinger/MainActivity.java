@@ -23,14 +23,18 @@ public class MainActivity extends AppCompatActivity {
         FrameLayout myFrameLayout = findViewById(R.id.myFrameLayout);
 
         // intent handling
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        myFingerPainterView.load(intent.getData());
+        handleIntent(myFingerPainterView);
 
         myFrameLayout.addView(myFingerPainterView);
 
         setColour(myFingerPainterView);
         setShape(myFingerPainterView);
+    }
+
+    public void handleIntent(FingerPainterView paint) {
+        Intent intent = getIntent();
+        intent.setAction(Intent.ACTION_VIEW);
+        paint.load(intent.getData());
     }
 
     @Override
