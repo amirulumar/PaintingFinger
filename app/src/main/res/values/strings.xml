@@ -22,6 +22,7 @@
     <string name="round">ROUND</string>
     <string name="square">SQUARE</string>
     <string name="_0_150">0–150</string>
+    <string name="reset">Reset</string>
     ``
     <string-array name="colour_dropdown">
         <item>Red</item>

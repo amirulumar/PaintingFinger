@@ -29,12 +29,24 @@ public class MainActivity extends AppCompatActivity {
 
         setColour(myFingerPainterView);
         setShape(myFingerPainterView);
+        clearAll();
     }
 
     public void handleIntent(FingerPainterView paint) {
         Intent intent = getIntent();
         intent.setAction(Intent.ACTION_VIEW);
         paint.load(intent.getData());
+    }
+
+    public void clearAll() {
+        Button clear = findViewById(R.id.reset);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(getIntent());
+            }
+        });
     }
 
     @Override
@@ -91,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                         prompt = "Black";
                         break;
                 }
-                Toast.makeText(getApplicationContext(), "Current colour: " + prompt, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Current colour: " + prompt, Toast.LENGTH_SHORT).show();
 
                 // input values (brush colour)
                 Button colour_red = popup.findViewById(R.id.red);
@@ -142,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                         prompt = "Square";
                         break;
                 }
-                Toast.makeText(getApplicationContext(), "Current shape: " + prompt, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Current shape: " + prompt, Toast.LENGTH_SHORT).show();
 
                 // input values (brush shape and width)
                 Button shape_round = popup.findViewById(R.id.round);
